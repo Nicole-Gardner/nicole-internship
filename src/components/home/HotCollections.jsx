@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import OwlCarousel from 'react-owl-carousel';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel/dist/assets/owl.theme.default.css';
+
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 
@@ -27,9 +28,9 @@ const HotCollections = () => {
           </div>
 
           <div className="col-lg-12">
-            <Slider {...settings}>
-              {new Array(8).fill(0).map((_, index) => (
-                <div key={index} style={{ padding: "0 10px" }}>
+            <OwlCarousel className="owl-theme" {...settings}>
+              {new Array(4).fill(0).map((_, index) => (
+                <div key={index} style={{ padding: "0 5px" }}>
                   <div className="nft_coll">
                     <div className="nft_wrap">
                       <Link to="/item-details">
@@ -61,7 +62,7 @@ const HotCollections = () => {
                   </div>
                 </div>
               ))}
-            </Slider>
+            </OwlCarousel>
           </div>
         </div>
       </div>

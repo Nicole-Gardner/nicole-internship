@@ -1,7 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import OwlCarousel from 'react-owl-carousel';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel/dist/assets/owl.theme.default.css';
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
+
+const settings = {
+  dots: false,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+};
 
 const NewItems = () => {
   return (
@@ -14,10 +25,11 @@ const NewItems = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {new Array(4).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-              <div className="nft__item">
-                <div className="author_list_pp">
+          <OwlCarousel className="owl-theme" {...settings}>
+                        {new Array(4).fill(0).map((_, index) => (
+                          <div key={index} style={{ padding: "0 5px" }}>
+                            <div className="nft_coll">
+                              <div className="nft_wrap">
                   <Link
                     to="/author"
                     data-bs-toggle="tooltip"
@@ -70,6 +82,7 @@ const NewItems = () => {
               </div>
             </div>
           ))}
+          </OwlCarousel>
         </div>
       </div>
     </section>
