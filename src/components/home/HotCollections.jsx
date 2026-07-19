@@ -1,35 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-=======
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 
->>>>>>> main
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 
 const settings = {
   dots: false,
-<<<<<<< HEAD
-  arrows: true,
-=======
->>>>>>> main
-  infinite: true,
-  speed: 500,
-  slidesToShow: 4,
-  slidesToScroll: 1,
-<<<<<<< HEAD
+  loop: true,
+  items: 4,
+  slideBy: 1,
   autoplay: true,
-  autoplaySpeed: 2000,
-=======
->>>>>>> main
+  autoplayTimeout: 2000,
 };
-
 const HotCollections = () => {
   return (
     <section id="section-collections" className="no-bottom">
@@ -43,15 +28,9 @@ const HotCollections = () => {
           </div>
 
           <div className="col-lg-12">
-<<<<<<< HEAD
-            <Slider {...settings}>
+            <OwlCarousel className="owl-theme" {...settings}>
               {new Array(8).fill(0).map((_, index) => (
                 <div key={index} style={{ padding: "0 10px" }}>
-=======
-            <OwlCarousel className="owl-theme" {...settings}>
-              {new Array(4).fill(0).map((_, index) => (
-                <div key={index} style={{ padding: "0 5px" }}>
->>>>>>> main
                   <div className="nft_coll">
                     <div className="nft_wrap">
                       <Link to="/item-details">
@@ -83,15 +62,11 @@ const HotCollections = () => {
                   </div>
                 </div>
               ))}
-<<<<<<< HEAD
-            </Slider>
-=======
             </OwlCarousel>
->>>>>>> main
           </div>
         </div>
       </div>
-    </section>
+   </section>
   );
 };
 
