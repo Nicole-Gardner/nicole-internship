@@ -28,9 +28,7 @@ const settings = {
 const NewItems = () => {
   return (
     <section id="section-items" className="no-bottom">
-        <div className="nft__item"></div>
-        <div className="author_list_pp"></div>
-      <div className="container">
+  <div className="container">
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
@@ -79,8 +77,7 @@ const NewItems = () => {
           </OwlCarousel>
           </div>
           </div>
-        </div>
-      </div>
+        
     </section>
   );
 };

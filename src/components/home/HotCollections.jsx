@@ -9,12 +9,12 @@ import nftImage from "../../images/nftImage.jpg";
 
 const settings = {
   dots: false,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 4,
-  slidesToScroll: 1,
+  loop: true,
+  items: 4,
+  slideBy: 1,
+  autoplay: true,
+  autoplayTimeout: 2000,
 };
-
 const HotCollections = () => {
   return (
     <section id="section-collections" className="no-bottom">
@@ -29,8 +29,8 @@ const HotCollections = () => {
 
           <div className="col-lg-12">
             <OwlCarousel className="owl-theme" {...settings}>
-              {new Array(4).fill(0).map((_, index) => (
-                <div key={index} style={{ padding: "0 5px" }}>
+              {new Array(8).fill(0).map((_, index) => (
+                <div key={index} style={{ padding: "0 10px" }}>
                   <div className="nft_coll">
                     <div className="nft_wrap">
                       <Link to="/item-details">
@@ -66,7 +66,7 @@ const HotCollections = () => {
           </div>
         </div>
       </div>
-    </section>
+   </section>
   );
 };
 
