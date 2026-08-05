@@ -31,7 +31,11 @@ const HotCollections = () => {
       }
 
       const data = await response.json();
+<<<<<<< Updated upstream
      
+=======
+      console.log(data);
+>>>>>>> Stashed changes
       setCollections(data);
     } catch (error) {
       console.error("Failed to fetch collections:", error);
@@ -95,3 +99,4 @@ const HotCollections = () => {
 };
 
 export default HotCollections;
+;
