@@ -52,6 +52,7 @@ const NewItems = () => {
 
     fetchItems();
   }, []);
+  if (loading) return <div>Loading...</div>;
   return (
     <section id="section-items" className="no-bottom">
   <div className="container">
