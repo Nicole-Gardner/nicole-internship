@@ -15,10 +15,35 @@ const settings = {
   autoplay: true,
   autoplayTimeout: 2000,
 };
+
 const HotCollections = () => {
   const [collections, setCollections] = useState([]);
 
   useEffect(() => {
+nicole_hotcollections
+  const fetchCollections = async () => {
+    try {
+      const response = await fetch(
+        "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
+      );
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      Updated upstream
+    
+      console.log(data);
+Stashed changes
+      setCollections(data);
+    } catch (error) {
+      console.error("Failed to fetch collections:", error);
+    }
+  };
+
+  fetchCollections();
+}, []);
     const fetchCollections = async () => {
       try {
         const response = await fetch(
@@ -39,6 +64,7 @@ const HotCollections = () => {
 
     fetchCollections();
   }, []);
+ main
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
@@ -51,6 +77,43 @@ const HotCollections = () => {
           </div>
 
           <div className="col-lg-12">
+    nicole_hotcollections
+            <OwlCarousel className="owl-theme" {...settings}>
+             {collections.map((item) => (
+  <div key={item.id} style={{ padding: "0 10px" }}>
+    <div className="nft_coll">
+      <div className="nft_wrap">
+        <Link to="/item-details">
+          <img
+            src={item.nftImage || nftImage}
+            className="lazy img-fluid"
+            alt={item.title}
+          />
+        </Link>
+      </div>
+
+      <div className="nft_coll_pp">
+        <Link to="/author">
+          <img
+            className="lazy pp-coll"
+            src={item.authorImage || AuthorImage}
+            alt=""
+          />
+        </Link>
+        <i className="fa fa-check"></i>
+      </div>
+
+      <div className="nft_coll_info">
+        <Link to="/explore">
+          <h4>{item.title}</h4>
+        </Link>
+        <span>ERC-{item.code}</span>
+      </div>
+    </div>
+  </div>
+))}
+            </OwlCarousel>
+
             {collections.length > 0 ? (
               <OwlCarousel className="owl-theme" {...settings}>
                 {collections.map((item) => (
@@ -90,6 +153,7 @@ const HotCollections = () => {
             ) : (
               <p>Loading collections...</p>
             )}
+            main
           </div>
         </div>
       </div>
@@ -98,3 +162,6 @@ const HotCollections = () => {
 };
 
 export default HotCollections;
+ nicole_hotcollections
+;
+main
