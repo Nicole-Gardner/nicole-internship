@@ -45,7 +45,7 @@ const ExploreItems = () => {
                     <a href="https://twitter.com/" target="_blank" rel="noreferrer">
                       <i className="fa fa-twitter fa-lg"></i>
                     </a>
-                    <a href="mailto:?subject=Check%20out%20this%20NFT"
+                    <a href="mailto:?subject=Check%20out%20this%20NFT" target="_blank" rel="noreferrer">
                       <i className="fa fa-envelope fa-lg"></i>
                     </a>
                   </div>
@@ -69,9 +69,9 @@ const ExploreItems = () => {
         </div>
       ))}
       <div className="col-md-12 text-center">
-        <Link to="" id="loadmore" className="btn-main lead">
+        <button id="loadmore" className="btn-main lead">
           Load more
-        </Link>
+        </button>
       </div>
     </>
   );
