@@ -15,30 +15,33 @@ const settings = {
   autoplay: true,
   autoplayTimeout: 2000,
 };
+
 const HotCollections = () => {
   const [collections, setCollections] = useState([]);
 
   useEffect(() => {
-    const fetchCollections = async () => {
-      try {
-        const response = await fetch(
-          "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
-        );
+  const fetchCollections = async () => {
+    try {
+      const response = await fetch(
+        "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
+      );
 
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-
-        const data = await response.json();
-        console.log(data);
-        setCollections(data);
-      } catch (error) {
-        console.error("Failed to fetch collections:", error);
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
       }
-    };
 
-    fetchCollections();
-  }, []);
+      const data = await response.json();
+    
+      console.log(data);
+      setCollections(data);
+    } catch (error) {
+      console.error("Failed to fetch collections:", error);
+    }
+  };
+   fetchCollections();
+}, []);
+
+
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
@@ -51,6 +54,7 @@ const HotCollections = () => {
           </div>
 
           <div className="col-lg-12">
+
             {collections.length > 0 ? (
               <OwlCarousel className="owl-theme" {...settings}>
                 {collections.map((item) => (
@@ -90,6 +94,7 @@ const HotCollections = () => {
             ) : (
               <p>Loading collections...</p>
             )}
+      
           </div>
         </div>
       </div>
@@ -98,3 +103,5 @@ const HotCollections = () => {
 };
 
 export default HotCollections;
+ 
+
