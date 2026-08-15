@@ -103,3 +103,5 @@ const HotCollections = () => {
 };
 
 export default HotCollections;
+ 
+
