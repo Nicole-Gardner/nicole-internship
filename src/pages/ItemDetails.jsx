@@ -6,7 +6,9 @@ import nftImage from "../images/nftImage.jpg";
 
 const ItemDetails = () => {
   const { nftId } = useParams();
-  const [item, setItem] = useState(null); useEffect(() => {
+  const [item, setItem] = useState(null);
+
+  useEffect(() => {
     async function fetchItem() {
       const response = await fetch(
         `https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${nftId}`
@@ -63,7 +65,7 @@ const ItemDetails = () => {
                     <h6>Owner</h6>
                     <div className="item_author">
                       <div className="author_list_pp">
-                        <Link to="/author">
+                        <Link to={`/author/${item.ownerId}`}>
                           <img src={item.ownerImage || AuthorImage} alt="" />
                           <i className="fa fa-check"></i>
                         </Link>
