@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 
 const ExploreItems = () => {
+  const [items, setItems] = useState([]);
+  const [visibleItems, setVisibleItems] = useState(8);
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      const response = await fetch(
+        "https://us-central1-nft-cloud-functions.cloudfunctions.net/exploreItems"
+      );
+
+      const data = await response.json();
+      setItems(data);
+    };
+
+    fetchItems();
+  }, []);
+
   return (
     <>
       <div>
@@ -14,68 +30,63 @@ const ExploreItems = () => {
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      {new Array(8).fill(0).map((_, index) => (
+
+      {items.slice(0, visibleItems).map((item) => (
         <div
-          key={index}
-          className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
-          style={{ display: "block", backgroundSize: "cover" }}
+          key={item.id}
+          className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12 animated fadeInUp"
+          style={{ display: "block", backgroundSize: "cover", animationDuration: "1.5s" }}
         >
           <div className="nft__item">
             <div className="author_list_pp">
-              <Link
-                to="/author"
-                data-bs-toggle="tooltip"
-                data-bs-placement="top"
-              >
-                <img className="lazy" src={AuthorImage} alt="" />
+              <Link to={`/author/${item.authorId}`}>
+                <img
+                  className="lazy"
+                  src={item.authorImage || AuthorImage}
+                  alt=""
+                />
                 <i className="fa fa-check"></i>
               </Link>
             </div>
-            <div className="de_countdown">5h 30m 32s</div>
 
             <div className="nft__item_wrap">
-              <div className="nft__item_extra">
-                <div className="nft__item_buttons">
-                  <button>Buy Now</button>
-                  <div className="nft__item_share">
-                    <h4>Share</h4>
-                    <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
-                      <i className="fa fa-facebook fa-lg"></i>
-                    </a>
-                    <a href="https://twitter.com/" target="_blank" rel="noreferrer">
-                      <i className="fa fa-twitter fa-lg"></i>
-                    </a>
-                    <a href="mailto:?subject=Check%20out%20this%20NFT" target="_blank" rel="noreferrer">
-                      <i className="fa fa-envelope fa-lg"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
               <Link to="/item-details">
-                <img src={nftImage} className="lazy nft__item_preview" alt="" />
+                <img
+                  src={item.nftImage || nftImage}
+                  className="lazy nft__item_preview"
+                  alt={item.title}
+                />
               </Link>
             </div>
+
             <div className="nft__item_info">
               <Link to="/item-details">
-                <h4>Pinky Ocean</h4>
+                <h4>{item.title}</h4>
               </Link>
-              <div className="nft__item_price">1.74 ETH</div>
+
+              <div className="nft__item_price">{item.price} ETH</div>
+
               <div className="nft__item_like">
                 <i className="fa fa-heart"></i>
-                <span>69</span>
+                <span>{item.likes}</span>
               </div>
             </div>
           </div>
         </div>
       ))}
-      <div className="col-md-12 text-center">
-        <button id="loadmore" className="btn-main lead">
-          Load more
-        </button>
-      </div>
+      {visibleItems < items.length && (
+        <div className="col-md-12 text-center">
+          <button
+            id="loadmore"
+            className="btn-main lead"
+            onClick={() => setVisibleItems(visibleItems + 4)}
+          >
+            Load more
+          </button>
+        </div>
+      )}
     </>
   );
 };
-
 
 export default ExploreItems;

@@ -16,7 +16,7 @@ const Landing = () => {
         <div className="container">
           <div className="row align-items-center">
             <div className="col-md-6 animated fadeInLeft"
-              style={{ animationDuration: "2s" }}>
+             style={{ animationDuration: "1.5s" }}>
               <div className="spacer-single"></div>
               <h6>
                 <span className="text-uppercase id-color-2">
@@ -38,7 +38,8 @@ const Landing = () => {
             </div>
             <div className="col-md-6 xs-hide">
               <img src={NFT} className="lazy img-fluid animated fadeInUp"
-                style={{ animationDuration: "2s" }} alt="" />
+               style={{ animationDuration: "1.5s" }}
+              />
             </div>
           </div>
         </div>
