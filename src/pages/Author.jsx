@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const Author = () => {
   const { authorId } = useParams();
   const [profile, setProfile] = useState(null);
+  const [isFollowing, setIsFollowing] = useState(false);
 
   useEffect(() => {
     async function fetchProfile() {
@@ -55,39 +56,43 @@ const Author = () => {
                           {profile.address}
                         </span>
                         <div className="profile_follower">
-                          {profile.followers} followers
+                         {Number(profile.followers) + (isFollowing ? 1 : 0)} followers
                         </div>
                         <button id="btn_copy" title="Copy Text">
                           Copy
                         </button>
-                     
+
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="profile_follow de-flex">
-                  <div className="de-flex-col">
-                    <div className="profile_follower">
-                      {profile.followers} followers
+                  <div className="profile_follow de-flex">
+                    <div className="de-flex-col">
+                      <div className="profile_follower">
+                      {Number(profile.followers) + (isFollowing ? 1 : 0)} followers
+                      </div>
+                      <button
+                        type="button"
+                        className="btn-main"
+                        onClick={() => setIsFollowing((following) => !following)}
+                      >
+                        {isFollowing ? "Following" : "Follow"}
+                      </button>
                     </div>
-                    <Link to="#" className="btn-main">
-                      Follow
-                    </Link>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div className="col-md-12">
-              <div className="de_tab tab_simple">
-                <AuthorItems />
+              <div className="col-md-12">
+                <div className="de_tab tab_simple">
+                  <AuthorItems />
+                </div>
               </div>
             </div>
           </div>
-      </div>
-    </section>
-        </div >
+        </section>
       </div >
-    );
-  };
+    </div >
+  );
+};
 
 export default Author; 

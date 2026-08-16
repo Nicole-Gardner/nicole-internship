@@ -6,6 +6,7 @@ import nftImage from "../../images/nftImage.jpg";
 const ExploreItems = () => {
   const [items, setItems] = useState([]);
   const [visibleItems, setVisibleItems] = useState(8);
+  const [sortOption, setSortOption] = useState("");
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -20,11 +21,27 @@ const ExploreItems = () => {
 
     fetchItems();
   }, []);
+  const sortedItems = [...items].sort((a, b) => {
+  if (sortOption === "price_low_to_high") {
+    return Number(a.price) - Number(b.price);
+  }
+
+  if (sortOption === "price_high_to_low") {
+    return Number(b.price) - Number(a.price);
+  }
+
+  if (sortOption === "likes_high_to_low") {
+    return Number(b.likes) - Number(a.likes);
+  }
+
+  return 0;
+});
 
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue="">
+        <select id="filter-items" defaultValue="" onChange={(e) => setSortOption(e.target.value)}>
+
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
@@ -32,7 +49,7 @@ const ExploreItems = () => {
         </select>
       </div>
 
-      {items.slice(0, visibleItems).map((item) => (
+      {sortedItems.slice(0, visibleItems).map((item) => (
         <div
           key={item.id}
           className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12 animated fadeInUp"
