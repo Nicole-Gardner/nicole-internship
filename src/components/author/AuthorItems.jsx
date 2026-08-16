@@ -5,16 +5,20 @@ const AuthorItems = () => {
   const { authorId } = useParams();
   const [authorItems, setAuthorItems] = useState(null);
 
+  console.log("authorId:", authorId);
+
+  async function fetchAuthorItems() {
+    const response = await fetch(
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`
+    );
+
+    const data = await response.json();
+    console.log("API data:", data);
+
+    setAuthorItems(data);
+  }
+
   useEffect(() => {
-    async function fetchAuthorItems() {
-      const response = await fetch(
-        `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`
-      );
-
-      const data = await response.json();
-      setAuthorItems(data);
-    }
-
     fetchAuthorItems();
   }, [authorId]);
 
@@ -33,9 +37,9 @@ const AuthorItems = () => {
             >
               <div className="nft__item">
                 <div className="author_list_pp">
-                  <Link to={`/author/${author.authorId}`}>
+                  <Link to={`/author/${authorId}`}>
                     <img
-                      className="lazy"
+                      className="lazy pp-author"
                       src={authorItems.authorImage}
                       alt={authorItems.authorName}
                     />
