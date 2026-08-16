@@ -10,8 +10,9 @@ const ExploreItems = () => {
   useEffect(() => {
     const fetchItems = async () => {
       const response = await fetch(
-        "https://us-central1-nft-cloud-functions.cloudfunctions.net/exploreItems"
+        "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
       );
+
 
       const data = await response.json();
       setItems(data);
@@ -39,7 +40,7 @@ const ExploreItems = () => {
         >
           <div className="nft__item">
             <div className="author_list_pp">
-              <Link to={`/author/${item.authorId}`}>
+              <Link to={`/item-details/${item.nftId}`}>
                 <img
                   className="lazy"
                   src={item.authorImage || AuthorImage}
@@ -50,7 +51,7 @@ const ExploreItems = () => {
             </div>
 
             <div className="nft__item_wrap">
-              <Link to="/item-details">
+              <Link to={`/item-details/${item.nftId}`}>
                 <img
                   src={item.nftImage || nftImage}
                   className="lazy nft__item_preview"
@@ -60,7 +61,7 @@ const ExploreItems = () => {
             </div>
 
             <div className="nft__item_info">
-              <Link to="/item-details">
+              <Link to={`/item-details/${item.id}`}>
                 <h4>{item.title}</h4>
               </Link>
 
