@@ -5,22 +5,20 @@ const AuthorItems = () => {
   const { authorId } = useParams();
   const [authorItems, setAuthorItems] = useState(null);
 
-  console.log("authorId:", authorId);
 
+
+useEffect(() => {
   async function fetchAuthorItems() {
     const response = await fetch(
       `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`
     );
 
     const data = await response.json();
-    console.log("API data:", data);
-
     setAuthorItems(data);
   }
 
-  useEffect(() => {
-    fetchAuthorItems();
-  }, [authorId]);
+  fetchAuthorItems();
+}, [authorId]);
 
   if (!authorItems) {
     return <p>Loading...</p>;
