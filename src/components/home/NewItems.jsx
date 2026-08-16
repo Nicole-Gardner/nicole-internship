@@ -71,15 +71,12 @@ const NewItems = () => {
             {items.map((item) => (
               <div className="nft__item" key={item.id}>
                 <div className="author_list_pp">
-
-
-                  <Link
-                    to="/author"
+                  <Link 
+                    to={`/author/${item.authorId}`}
                     data-bs-toggle="tooltip"
                     data-bs-placement="top"
                     title={`Creator ID: ${item.authorId}`}
                   >
-
                     <img className="lazy" src={item.authorImage || AuthorImage} alt="" />
                     <i className="fa fa-check"></i>
                   </Link>
@@ -100,7 +97,7 @@ const NewItems = () => {
                 </div>
 
                 <div className="nft__item_info">
-                  <Link to={`/item-details/${item.id}`}>
+                 <Link to={`/item-details/${item.nftId}`}>
                     <h4>{item.title || 'Untitled'}</h4>
                   </Link>
                   <div className="nft__item_price">{item.price ? `${item.price} ETH` : '—'}</div>
