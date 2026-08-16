@@ -40,22 +40,23 @@ return (
           <ol className="author_list">
             {authors.map((author, index) => (
               <li key={index}>
-                <div className="author_list_pp">
-                  <Link to="/author">
-                    <img
-                      className="lazy pp-author"
-                      src={author.authorImage || AuthorImage}
-                      alt={author.authorName}
-                    />
+               <div className="author_list_pp">
+  <Link to={`/author/${author.authorId}`}>
+    <img
+      className="lazy pp-author"
+      src={author.authorImage || AuthorImage}
+      alt={author.authorName}
+    />
+    <i className="fa fa-check"></i>
+  </Link>
+</div>
 
-                    <Link to="/author">{author.authorName}</Link>
-                    <i className="fa fa-check"></i>
-                  </Link>
-                </div>
-                <div className="author_list_info">
-                  <Link to="/author">{author.name}</Link>
-                  <span>{author.price} ETH</span>
-                </div>
+<div className="author_list_info">
+  <Link to={`/author/${author.authorId}`}>
+    {author.authorName}
+  </Link>
+  <span>{author.price} ETH</span>
+</div>
               </li>
             ))}
           </ol>
