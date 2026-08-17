@@ -6,14 +6,13 @@ import 'owl.carousel/dist/assets/owl.theme.default.css';
 
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
-
 const settings = {
   dots: false,
+  nav: true,
   loop: true,
   items: 4,
   slideBy: 1,
-  autoplay: true,
-  autoplayTimeout: 2000,
+  autoplay: false,
 };
 
 const HotCollections = () => {
